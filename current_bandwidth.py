@@ -17,9 +17,13 @@ def get_bandwidth(delay):
 
     second_data = snmp_extract(snmp_data)
 
-    bps = ((int(second_data) - int(first_data))*8)/delay
+    bps = ((float(second_data) - float(first_data))*8)/delay
+    
+    mbps = bps/1024/1024
+    
+    mbps = round(mbps,2)
 
-    return bps
+    return mbps
 
-while 1==1:
-    print get_bandwidth(10)/1024
+
+print get_bandwidth(30)
